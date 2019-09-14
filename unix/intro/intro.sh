@@ -8,7 +8,7 @@ echo "Running intro.sh"
 
 # The command cd (change directory) can be used to change the current direcory.
 # Update the cd command below to make sure that the rest of this script is executed in the apacheLog folder that is inside of the data folder.
-cd ./ || exit
+cd ../data/apacheLog || exit
 # The '||' on this line is like a or. If the left part gives an exit code of non-zero (error/false) the right part is evaluated.
 # We also have the '&&' sign. this only evaluates the right part if the left part has a zero exit code (no error/true).
 echo "Moved from intro to the data->apacheLog folder"
@@ -23,19 +23,19 @@ echo "$lsOutput"
 # Do this by typing it between the brackets below.
 # You can first test individual commands by pasting them in the terminal.
 # (Make sure that you are in the correct directory if you want to test it)
-detailedLsOutput=$()
+detailedLsOutput=$(ls -la)
 # Prints the lsOutput
 echo "Files in directory:"
 echo "$detailedLsOutput"
 
 # Implement a command that looks for all files containing '_log' in their name
-logFiles=$()
+logFiles=$(find . -type f -iname "*_log")
 # Print result
 echo "Log files:"
 echo "$logFiles"
 
 # Implement a command that gets all the lines that contain "File does not exist" from the 'error_log' file
-lines=$()
+lines=$(grep 'File does not exist:' error_log)
 # Print result
 echo "Lines from error_log where 'File does not exist:'"
 echo "$lines"
@@ -53,12 +53,12 @@ ls | lolcat
 # The first part should take all the lines containing "GET" from the 'access_log' file.
 # The second part should only keeps the first 3 lines.
 # lastly we need to get the data that is between quotes
-firstPipeline=$()
+firstPipeline=$(grep "GET" access_log | head -n 3)
 echo "First pipeline results:"
 echo "$firstPipeline"
 
 # Implement a pipeline that displays only the owner of the log files in the current directory
-secondPipeline=$()
+secondPipeline=$(ls -l | tail -n 3 | cut -d ' ' -f 3)
 # Print result
 echo "Second pipeline results:"
 echo "$secondPipeline"
