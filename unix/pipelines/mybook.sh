@@ -9,7 +9,7 @@ echo "-- Q1 --"
 # Example output:
 # 14 book
 # 10 cover
-mostCommonWords=$(ls | xargs -I % sh -c 'cat % | sed -e "s/\s/\n/g" | sort | uniq -ci | sort -nr | head -3; echo "%\n"')
+mostCommonWords=$(cat * | sed -e "s/\s/\n/g" | sort | sed '/^$/d' | uniq -ci | sort -nr | head -10) # TODO dumb space
 # Prints the mostCommonWords
 echo "Most common words in my book:"
 echo "$mostCommonWords"
@@ -26,7 +26,7 @@ echo "-- Q2 --"
 #
 # Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts
 # Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean
-linesFromTheBook=$(ls | xargs -I % sh -c "sed -e 's/\./\.\n/g' % | grep '\S' | head -7; echo '%\n\n'")
+linesFromTheBook=$(ls | xargs -I % sh -c "sed -e 's/\./\.\n/g' % | grep '\S' | head -7")
 echo "Listing of lines from the book:"
 echo "$linesFromTheBook"
 
@@ -37,8 +37,8 @@ echo "-- Q3 --"
 # It seems that the writer of the book mistyped the word "I" and used a lower case "i" instead.
 # Write a pipeline that finds all the text files and replaces all the words "i" with its upper case variant.
 # Make sure that it is NOT in line and that the output book is in its original ordered.
-fixedBook=$(ls | xargs sed 's/[[:punct:] ]i[., ]/\U&/g' %)
-echo "The corrected book:"
+fixedBook=$(ls | xargs sed 's/[[:punct:] ]i[., ]/\U&/g')
+echo "The corrected bogok:"
 echo "$fixedBook"
 echo "--------"
 

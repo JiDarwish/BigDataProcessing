@@ -9,7 +9,8 @@ echo "-- Q1 --"
 # Write a pipeline that from access_log get all POST requests and displays time, clientIP, path, statusCode, size
 # 10.0.0.153 - - [10/Mar/2004:12:07:07 -0800] "POST /mailman/admin/ppwc/members/add HTTP/1.1" 200 6762
 # For example: "10/Mar/2004:12:02:59", "10.0.0.153", "/cgi-bin/mailgraph2.cgi", "200", "2987"
-accessData=$(grep POST access_log | awk '{print $4, $1, $7, $9, $10}' )
+# Add maybe | sed 's/ /", "/g' | sed 's/^\|$/"/g' 
+accessData=$(grep POST access_log | sed 's/\[//g;s/"//g' | awk '{print $4, $1, $7, $9, $10}' | sed 's/ /", "/g;s/^\|$/"/g')
 # Print accessData
 echo "Access data:"
 echo "$accessData"
