@@ -53,7 +53,7 @@ ls | lolcat
 # The first part should take all the lines containing "GET" from the 'access_log' file.
 # The second part should only keeps the first 3 lines.
 # lastly we need to get the data that is between quotes
-firstPipeline=$(grep "GET" access_log | head -n 3)
+firstPipeline=$(grep "GET" access_log | head -n 3 | grep -o '".*"')
 echo "First pipeline results:"
 echo "$firstPipeline"
 

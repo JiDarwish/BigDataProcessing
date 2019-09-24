@@ -26,7 +26,7 @@ echo "-- Q2 --"
 #
 # Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts
 # Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean
-linesFromTheBook=$(ls | xargs -I % sh -c "sed -e 's/\./\.\n/g' %| head -7; echo '%\n\n'")
+linesFromTheBook=$(ls | xargs -I % sh -c "sed -e 's/\./\.\n/g' % | grep '\S' | head -7; echo '%\n\n'")
 echo "Listing of lines from the book:"
 echo "$linesFromTheBook"
 
@@ -37,7 +37,7 @@ echo "-- Q3 --"
 # It seems that the writer of the book mistyped the word "I" and used a lower case "i" instead.
 # Write a pipeline that finds all the text files and replaces all the words "i" with its upper case variant.
 # Make sure that it is NOT in line and that the output book is in its original ordered.
-fixedBook=$(ls | xargs sed 's/ i /\U&/g' %)
+fixedBook=$(ls | xargs sed 's/[[:punct:] ]i[., ]/\U&/g' %)
 echo "The corrected book:"
 echo "$fixedBook"
 echo "--------"
