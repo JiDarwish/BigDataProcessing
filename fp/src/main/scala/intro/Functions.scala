@@ -5,7 +5,6 @@ package intro
   * It is worth 3 points.
   */
 object Functions {
-
     /**
       * An example to show what function definitions look like in Scala.
       *
@@ -34,5 +33,21 @@ object Functions {
       *           - "FizzBuzz" if the given number is divisible by both 3 and 5
       *           - Otherwise return the string representation of the number, e.g. "2"
       */
+    def fizzBuzz(i:Int): String = {
+        if (i % 3 != 0 && i % 5 != 0) {
+            return i.toString
+        }
+
+        var toReturn:String = ""
+
+        if (i % 3 == 0) {
+            toReturn += "Fizz"
+        }
+        if (i % 5 == 0) {
+            toReturn += "Buzz"
+        }
+
+        toReturn
+    }
 
 }

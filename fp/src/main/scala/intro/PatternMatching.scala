@@ -9,6 +9,18 @@ package intro
   */
 object PatternMatching {
 
+//    def main(args: Array[String]): Unit = {
+//        println(sum(1::2::3::4::5::6::7::Nil))
+//
+//
+//        println(optionalSum(Num(1)::Num(6)::Nothing()::Num(33)::Nothing()::Nothing()::Nothing()::Num(22)::Nil))
+//
+//        println(firstDivByX(1::2::3::25::4::5::6::Nil, 5))
+//        println(onlyEvenNumbers(Num(1)::Num(6)::Nothing()::Num(33)::Nothing()::Nothing()::Nothing()::Num(22)::Nil))
+//
+//
+//    }
+
     /**
       * Recursively sums all values in the list.
       *
@@ -72,7 +84,12 @@ object PatternMatching {
       *
       * Hint: you can use if statements in pattern matching.
       */
-    def firstDivByX(xs: List[Int], n: Int): OptionalNum = ???
+    def firstDivByX(xs: List[Int], n: Int): OptionalNum = {
+        for (x <- xs) {
+            if (x % n == 0) return Num(x)
+        }
+        return Nothing()
+    }
 
     /** Q4 (2p)
       * Implement this function that returns a list of only the even numbers.
@@ -81,5 +98,7 @@ object PatternMatching {
       * @param xs the list to process.
       * @return the list of all even numbers in xs.
       */
-    def onlyEvenNumbers(xs: List[OptionalNum]): List[Int] = ???
+    def onlyEvenNumbers(xs: List[OptionalNum]): List[Int] = {
+        xs.filter(item => item != Nothing() && item.asInstanceOf[Num].i % 2 !=0).map(item => item.asInstanceOf[Num].i)
+    }
 }

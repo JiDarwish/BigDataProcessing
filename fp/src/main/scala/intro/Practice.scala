@@ -10,6 +10,11 @@ package intro
   */
 object Practice {
 
+//    def main(args: Array[String]): Unit = {
+//        println(firstN(1::2::3::4::5::Nil, 2))
+//        println(maxValue(1::2::3::4::5::Nil))
+//    }
+
     /** Q5 (2p)
       * Implement the function that returns the first n elements from the list.
       * Note that `n` is an upper bound, the list might not have `n` elements.
@@ -18,7 +23,9 @@ object Practice {
       * @param n amount of items to take.
       * @return the first n items of xs.
       */
-    def firstN(xs: List[Int], n: Int): List[Int] = ???
+    def firstN(xs: List[Int], n: Int): List[Int] = {
+        xs.slice(0, n)
+    }
 
 
     /** Q6 (3p)
@@ -27,5 +34,7 @@ object Practice {
       * @param xs list to process.
       * @return the maximum value in the list.
       */
-    def maxValue(xs: List[Int]): Int = ???
+    def maxValue(xs: List[Int]): Int = {
+        xs.max
+    }
 }
