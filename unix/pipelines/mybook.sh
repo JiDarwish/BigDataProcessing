@@ -9,7 +9,7 @@ echo "-- Q1 --"
 # Example output:
 # 14 book
 # 10 cover
-mostCommonWords=$(cat *.txt | sed -e "s/[[:punct:]]//g;s/\s/\n/g" | sort | sed '/^$/d' | uniq -ci | sort -nr | head -10) # TODO dumb space
+mostCommonWords=$(find . -type f -name "*.txt" | xargs cat | tr [:upper:] [:lower:] | tr -d [:punct:] | tr ' ' '\n' | sort | uniq -c | sort -n | tail -n 10 | sort -nr)
 # Prints the mostCommonWords
 echo "Most common words in my book:"
 echo "$mostCommonWords"

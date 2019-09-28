@@ -18,15 +18,5 @@ then
 	exit 1
 fi
 
-cd "$(dirname "$0")"
-cd ../data/apacheLog
-
-out=""
-while read p; do
-    newLine=$(echo $p | sed 's/\[//g;s/"//g' | awk '{print $1, $4, $6, $9, $10}' | sed 's/ /, /g' )
-    # output="$output\n$newLine"
-    out="$out
-    $newLine"
-done < $fileName
-
-echo "$out"
+toCSV=$(cat $fileName | awk '{print $1 "," substr($4, 2) "," $6 "," $7 "," $9 "," $10}' | sed 's/"//')
+echo "$toCSV"
