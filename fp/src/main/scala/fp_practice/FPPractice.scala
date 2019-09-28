@@ -8,32 +8,42 @@ package fp_practice
   */
 object FPPractice {
 
-    /** Q13 (4p)
-      * Returns the sum of the first 10 numbers larger than 25 in the given list.
-      * @param xs the list to process.
-      * @return the sum of the first 10 numbers larger than 25.
-      */
-    def first10Above25(xs: List[Int]): Int = ???
+  /** Q13 (4p)
+    * Returns the sum of the first 10 numbers larger than 25 in the given list.
+    *
+    * @param xs the list to process.
+    * @return the sum of the first 10 numbers larger than 25.
+    */
+  def first10Above25(xs: List[Int]): Int = {
+    xs.filter(num => num > 25).slice(0, 10).sum
+  }
 
-    /** Q14 (5p)
-      * Provided with a list of all grades for each student of a course,
-      * count the amount of passing students.
-      * A student passes the course when the average of the grades is at least 5.75 and no grade is lower than 4.
-      *
-      * @param grades a list containing a list of grades for each student.
-      * @return the amount of students with passing grades.
-      */
-    def passingStudents(grades: List[List[Int]]): Int = ???
+  /** Q14 (5p)
+    * Provided with a list of all grades for each student of a course,
+    * count the amount of passing students.
+    * A student passes the course when the average of the grades is at least 5.75 and no grade is lower than 4.
+    *
+    * @param grades a list containing a list of grades for each student.
+    * @return the amount of students with passing grades.
+    */
+  def passingStudents(grades: List[List[Int]]): Int = {
+    return grades.filter(gradeList => gradeList.reduce((a, b) => a + b) / gradeList.size >= 5.75).size
 
-    /** Q15 (6p)
-      * Return the length of the first list of which the first item's value is equal to the sum of all other items.
-      * @param xs the list to process
-      * @return the length of the first list of which the first item's value is equal to the sum of all other items,
-      *         or None if no such list exists.
-      *
-      * Read the documentation on the `Option` class to find out what you should return.
-      * Hint: it is very similar to the `OptionalInt` you saw earlier.
-      */
-    def headSumsTail(xs: List[List[Int]]): Option[Int] = ???
+  }
+
+  /** Q15 (6p)
+    * Return the length of the first list of which the first item's value is equal to the sum of all other items.
+    *
+    * @param xs the list to process
+    * @return the length of the first list of which the first item's value is equal to the sum of all other items,
+    *         or None if no such list exists.
+    *
+    *         Read the documentation on the `Option` class to find out what you should return.
+    *         Hint: it is very similar to the `OptionalInt` you saw earlier.
+    */
+  def headSumsTail(xs: List[List[Int]]): Option[Int] = {
+    val list = xs.filter(item => item(0) == item.slice(1, item.size))
+    if (list.size > 0) Some(list(0).size) else None
+  }
 
 }
