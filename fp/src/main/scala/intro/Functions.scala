@@ -34,20 +34,18 @@ object Functions {
       *           - Otherwise return the string representation of the number, e.g. "2"
       */
     def fizzBuzz(i:Int): String = {
-        if (i % 3 != 0 && i % 5 != 0) {
-            return i.toString
+        if (i % 3 == 0 && i % 5 == 0) {
+            return "FizzBuzz"
         }
-
-        var toReturn:String = ""
 
         if (i % 3 == 0) {
-            toReturn += "Fizz"
+            return "Fizz"
         }
         if (i % 5 == 0) {
-            toReturn += "Buzz"
+            return "Buzz"
         }
+        return i.toString
 
-        toReturn
     }
 
 }

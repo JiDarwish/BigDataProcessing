@@ -64,6 +64,5 @@ object Lists {
       */
     def customAverage(xs: List[Int], x: Int, n: Int): Int = {
         xs.filter(item => item > x).slice(0, n).sum / n
-
     }
 }
