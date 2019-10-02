@@ -71,12 +71,9 @@ object PatternMatching {
       *
       * Hint: you can use if statements in pattern matching.
       */
-    def firstDivByX(xs: List[Int], n: Int): OptionalNum = {
-        xs.foreach(item => {
-            if (item % n == 0) return Num(item)
-        })
-
-        Nothing()
+    def firstDivByX(xs: List[Int], n: Int): OptionalNum =  xs match {
+        case item :: tail => if (item % n == 0) Num(item) else firstDivByX(tail, n)
+        case Nil => Nothing()
     }
 
     /** Q4 (2p)
