@@ -41,10 +41,13 @@ object Practice {
       * @param xs list to process.
       * @return the maximum value in the list.
       */
-    def maxValue(xs: List[Int]): Int = xs match {
-        case num :: tail => {
-            if (num > maxValue(tail)) num else maxValue(tail)
-        }
-        case Nil => Integer.MIN_VALUE
+    def maxValue(xs: List[Int]): Int = {
+//        xs match {
+            //        case num :: tail => {
+            //            if (num > maxValue(tail)) num else maxValue(tail)
+            //        }
+            //        case Nil => Integer.MIN_VALUE
+//        }
+        1
     }
 }

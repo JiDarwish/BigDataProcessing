@@ -75,16 +75,12 @@ object Dataset {
    * @return the name and amount of commits for the top committer.
    */
   def topCommitter(input: List[Commit], repo: String): (String, Int) = {
-    val authorAndCommitCount = input.filter(commit => commit.url.contains(repo))
-      .map(commit => (commit.commit.committer.name, commit))
-      .groupBy(_._1)
-      .map {
-        case (key, value) => key -> value.map(_._2).size
-      }
-      .toList
-      .sortBy(_._2)
-
-    authorAndCommitCount.last
+    input.filter(commit => commit.url.contains(repo))
+      .map(commit => {
+        (commit.commit.author.name, commit)
+      }).groupBy(_._1).map {
+      case (key, value) => key -> value.map(_._2).size
+    }.toList.maxBy(_._2)
   }
 
   /** Q19 (9p)
