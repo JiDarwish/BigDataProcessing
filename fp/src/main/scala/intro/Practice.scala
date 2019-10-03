@@ -42,12 +42,17 @@ object Practice {
       * @return the maximum value in the list.
       */
     def maxValue(xs: List[Int]): Int = {
-//        xs match {
-            //        case num :: tail => {
-            //            if (num > maxValue(tail)) num else maxValue(tail)
-            //        }
-            //        case Nil => Integer.MIN_VALUE
-//        }
-        1
+        maxRecursive(xs)
+    }
+
+    def maxRecursive(list: List[Int], max: Int = Integer.MIN_VALUE): Int = list match {
+        case (num: Int) :: tail => {
+            if (num > max) {
+                maxRecursive(tail, num)
+            } else {
+                maxRecursive(tail, max)
+            }
+        }
+        case Nil => max
     }
 }
