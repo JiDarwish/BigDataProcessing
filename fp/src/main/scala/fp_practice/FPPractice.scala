@@ -103,9 +103,8 @@ object FPPractice {
    *         Hint: it is very similar to the `OptionalInt` you saw earlier.
    */
   def headSumsTail(xs: List[List[Int]]): Option[Int] = xs match {
-    case listInts :: tail => {
+    case listInts :: tail =>
       if (sum(listInts) - listInts(0) == listInts(0)) Some(getListSize(listInts)) else headSumsTail(tail)
-    }
     case Nil => None
   }
 
