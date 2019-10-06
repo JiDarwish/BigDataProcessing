@@ -58,8 +58,8 @@ object FPFunctions {
     * @return one list containing all items in `xs`.
     */
   def recFlat(xs: List[Any]): List[Any] = xs match {
-    case (list: List[_]) :: tail => list ::: recFlat(tail)
-    case item :: tail => item +: recFlat(tail)
+    case (value: List[Any]) :: tail => recFlat(value) ::: recFlat(tail)
+    case (value: Any) :: tail => value :: recFlat(tail)
     case Nil => List()
   }
 
@@ -90,10 +90,15 @@ object FPFunctions {
     * @return the result of folding `xs` with `f`.
     */
   def foldR[A, B](xs: List[A], f: (A, B) => B, init: B): B = {
-    def foldLFunc(b: B, a: A) : B = f(a, b)
-   foldL(xs, foldLFunc, init)
-  }
+    def reverseList(list: List[A]): List[A] = list match {
+      case Nil => List()
+      case item :: tail => reverseList(tail) :+ item
+    }
 
+    def foldLFunc(b: B, a: A): B = f(a, b)
+
+    foldL(reverseList(xs), foldLFunc, init)
+  }
 
 
   /** Q12 (5p)
