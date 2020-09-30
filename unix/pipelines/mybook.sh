@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ---- MY AMAZING BOOK ----
 cd ./../data/myBook/ || exit
-
+# cat 01-chapter1.txt| sed -e 's/\s/\n/g' | sort | uniq -ci | sort -nr | head  -3
 # -- Q1 --
 echo "-- Q1 --"
 # Write a pipeline that for the current directory prints the 10 most common words in all text files.
@@ -9,7 +9,7 @@ echo "-- Q1 --"
 # Example output:
 # 14 book
 # 10 cover
-mostCommonWords=$()
+mostCommonWords=$(find . -type f -name "*.txt" | xargs cat | tr [:upper:] [:lower:] | tr -d [:punct:] | tr ' ' '\n' | sort | uniq -c | sort -n | tail -n 10 | sort -nr)
 # Prints the mostCommonWords
 echo "Most common words in my book:"
 echo "$mostCommonWords"
@@ -26,7 +26,7 @@ echo "-- Q2 --"
 #
 # Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts
 # Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean
-linesFromTheBook=$()
+linesFromTheBook=$(ls | xargs -I % sh -c "sed -e 's/\./\.\n/g' % | grep '\S' | head -7")
 echo "Listing of lines from the book:"
 echo "$linesFromTheBook"
 
@@ -37,8 +37,8 @@ echo "-- Q3 --"
 # It seems that the writer of the book mistyped the word "I" and used a lower case "i" instead.
 # Write a pipeline that finds all the text files and replaces all the words "i" with its upper case variant.
 # Make sure that it is NOT in line and that the output book is in its original ordered.
-fixedBook=$()
-echo "The corrected book:"
+fixedBook=$(ls | xargs sed 's/[[:punct:] ]i[., ]/\U&/g')
+echo "The corrected bogok:"
 echo "$fixedBook"
 echo "--------"
 
